@@ -17,10 +17,10 @@
             <?php // if user is not logged in we display link to log in or register
             if(!isset($_SESSION["user_id"])): ?>
             <li><a href="index.php">Home</a></li>
-            <li><a href="#">Products</a></li>
+            <li><a href="">Products</a></li>
             <li><a href="#">Contact</a></li>
             <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
+            <li><a href="../pages/register.php">Register</a></li>
 
             <?php // if user is admin
                   // display admin navigation
