@@ -33,7 +33,7 @@ registerForm.addEventListener("submit", async (e) => {
       body: formdata,
     });
 
-    const result = await response.json(); // get result from php
+    const result = await response.json(); // PHP result
 
     formMessage.textContent = result.message; // display result message for the user
 

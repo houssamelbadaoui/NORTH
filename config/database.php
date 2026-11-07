@@ -2,8 +2,12 @@
 
 require __DIR__ . "/../vendor/autoload.php";
 
-try{
+
 $url = getenv("MONGODB_URL");
+
+if (!$url) {
+    throw new RuntimeException("MONGODB_URL is not configured.");
+}
 
 $client = new MongoDB\Client($url);
 
@@ -15,8 +19,6 @@ $users = $db->selectCollection("users");
 $orders = $db->selectCollection("orders");
 $cart = $db->selectCollection("cart");
 $products = $db->selectCollection("products");
-}catch(Throwable $e){
-    echo "Connection failed: " . htmlspecialchars($e->getMessage());
-}
+
 
 
