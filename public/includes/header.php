@@ -19,7 +19,7 @@
             <li><a href="index.php">Home</a></li>
             <li><a href="">Products</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="../pages/login.php">Login</a></li>
             <li><a href="../pages/register.php">Register</a></li>
 
             <?php // if user is admin
