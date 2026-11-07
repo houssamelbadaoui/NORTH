@@ -96,12 +96,12 @@
                 </div>
 
                 <!-- Messages from JavaScript -->
-                <div
+                <p
                     id="formMessage"
                     class="form-message"
                     role="alert"
                     aria-live="polite"
-                ></div>
+                ></p>
 
                 <button type="submit" id="registerButton">
                     CREATE ACCOUNT
