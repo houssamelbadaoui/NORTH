@@ -1,165 +1,161 @@
-/* General reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* NORTH - LOGIN PAGE */
 
-html {
-  font-size: 100%;
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f5f5f5;
-  color: #222;
-  min-height: 100vh;
-}
-
-/* Main container */
 .login-container {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1rem;
+  padding: var(--space-8) var(--page-gutter);
 }
 
-/* Login card */
 .login-card {
   width: 100%;
-  max-width: 28rem;
-  background-color: #fff;
-  padding: clamp(1.5rem, 5vw, 3rem);
-  border-radius: 0.75rem;
-  box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.06);
+  max-width: var(--form-width);
+  background: var(--color-surface);
+  padding: var(--space-7);
+  border: var(--border-width) solid var(--color-border);
 }
 
-/* Brand */
+/* BRAND LOGO */
+
 .brand {
   display: block;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 800;
-  letter-spacing: 0.25rem;
-  color: #111;
+  letter-spacing: 0.3rem;
+  color: var(--color-text);
   text-decoration: none;
-  margin-bottom: 2.5rem;
+  margin-bottom: var(--space-7);
 }
 
-/* Heading */
+.brand span {
+  color: var(--color-accent);
+}
+
+/* HEADING */
+
 .login-heading {
-  text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: var(--space-6);
 }
 
 .login-heading h1 {
-  font-size: clamp(1.5rem, 5vw, 1.8rem);
-  margin-bottom: 0.6rem;
+  font-size: clamp(1.5rem, 4vw, var(--font-2xl));
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-2);
 }
 
 .login-heading p {
-  color: #777;
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
 }
 
-/* Form */
+/* FORM */
+
 #loginForm {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
 }
 
 .form-group label {
-  font-size: 0.9rem;
+  font-size: var(--font-sm);
   font-weight: 600;
 }
 
 .form-group input {
   width: 100%;
-  padding: 0.85rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 0.4rem;
-  font-size: 1rem;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border-input);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-size: var(--font-base);
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-fast);
 }
 
 .form-group input:focus {
-  border-color: #222;
+  border-color: var(--color-accent);
 }
 
-/* Login button */
+.form-group input::placeholder {
+  color: var(--color-text-light);
+}
+
+/* MESSAGE */
+
+.form-message {
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-4);
+  color: var(--color-error);
+}
+
+/* LOGIN BUTTON */
+
 #loginButton {
   width: 100%;
-  padding: 0.95rem;
-  margin-top: 0.25rem;
-  background-color: #111;
-  color: #fff;
+  padding: var(--space-4);
+  background: var(--color-accent);
+  color: var(--color-text);
   border: none;
-  border-radius: 0.4rem;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--font-sm);
+  font-weight: bold;
+  letter-spacing: 0.094rem;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background var(--transition-fast);
 }
 
 #loginButton:hover {
-  background-color: #333;
+  background: var(--color-accent-hover);
 }
 
-/* Feedback message */
-.form-message {
-  font-size: 0.9rem;
-  line-height: 1.4;
-  color: #c62828;
+#loginButton:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
 }
 
-/* Registration link */
+/* REGISTER LINK */
+
 .register-link {
   text-align: center;
-  margin-top: 1.75rem;
-  font-size: 0.9rem;
-  color: #777;
-  line-height: 1.6;
+  margin-top: var(--space-6);
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
 }
 
 .register-link a {
-  color: #111;
-  font-weight: 600;
+  color: var(--color-text);
+  font-weight: bold;
   text-decoration: none;
 }
 
 .register-link a:hover {
-  text-decoration: underline;
+  color: var(--color-accent);
 }
 
-/* Small screens */
+/* MOBILE */
+
 @media (max-width: 30rem) {
   .login-container {
-    padding: 1rem;
-    align-items: center;
+    padding: var(--space-4) var(--space-3);
+    align-items: flex-start;
   }
 
   .login-card {
-    padding: 1.5rem;
+    padding: var(--space-5) var(--space-4);
   }
 
-  .brand {
-    margin-bottom: 2rem;
-  }
-}
-
-/* Short screens */
-@media (max-height: 35rem) {
-  .login-container {
-    align-items: flex-start;
+  .login-heading h1 {
+    font-size: var(--font-xl);
   }
 }

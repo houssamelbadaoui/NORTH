@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Account - NORTH</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/register.css">
 </head>
 <body>
     <main class="register-page">
         <section class="register-container">
 
-        <a href="../index.php" class="brand">NORTH</a>
+        <a href="../index.php" class="brand">NORT<span>H</span></a>
 
         <div class="register-heading">
             <p class="eyebrow">WELCOME TO NORTH</p>

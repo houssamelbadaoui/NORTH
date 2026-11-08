@@ -1,0 +1,115 @@
+/* 
+   NORTH - GLOBAL DESIGN SYSTEM
+ */
+
+:root {
+  /* BRAND COLOURS */
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f7f7f5;
+
+  --color-text: #171717;
+  --color-text-muted: #777777;
+  --color-text-light: #999999;
+
+  --color-accent: #f05a28;
+  --color-accent-hover: #d94a1e;
+  --color-accent-light: #fff0ea;
+
+  --color-border: #eaeaea;
+  --color-border-input: #dedede;
+
+  --color-error: #c0392b;
+  --color-success: #347a52;
+
+  /* SPACING SYSTEM */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3rem;
+  --space-9: 4rem;
+
+  /* TYPOGRAPHY */
+  --font-family: Arial, Helvetica, sans-serif;
+
+  --font-xs: 0.6875rem;
+  --font-sm: 0.8125rem;
+  --font-base: 1rem;
+  --font-lg: 1.125rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 1.75rem;
+  --font-3xl: 2.5rem;
+
+  --line-height-base: 1.6;
+  --line-height-heading: 1.2;
+
+  /* LAYOUT */
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+
+  --container-width: 80rem;
+  --content-width: 60rem;
+  --form-width: 30rem;
+
+  --section-spacing: clamp(3rem, 7vw, 6rem);
+
+  /* BORDERS */
+  --border-width: 1px;
+
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+
+  /* EFFECTS */
+  --shadow-card: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.04);
+
+  --transition-fast: 0.2s ease;
+}
+
+/* 
+   GLOBAL RESET
+*/
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 
+   GLOBAL ELEMENTS
+*/
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  font-family: var(--font-family);
+  background: var(--color-background);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

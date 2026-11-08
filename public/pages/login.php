@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - NORTH</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
     <main class="login-container">
 
     <section class="login-card">
-        <a href="../index.php" class="brand">NORTH</a>
+        <a href="../index.php" class="brand">NORT<span>H</span></a>
 
         <div class="login-heading">
             <h1>Welcome Back</h1>
