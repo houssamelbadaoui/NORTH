@@ -37,5 +37,6 @@
         <p class="register-link">Don´t have an account? <a href="register.php">Create one</a></p>
     </section>
     </main>
+    <script src="../assets/js/login.js"></script>
 </body>
 </html>
