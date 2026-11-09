@@ -19,5 +19,6 @@ require_once __DIR__ . "/../config/session.php";
 <main>
     <h1>Welcome to NORTH</h1>
 </main>
+<script src="assets/js/logout.js"></script>
 </body>
 </html>

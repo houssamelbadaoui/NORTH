@@ -1,9 +1,6 @@
 
     
     
-    
-    
-    
     <header class="header">
 
     <div class="logo-container">
@@ -28,7 +25,7 @@
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Manage Products</a></li>
             <li><a href="#">Manage Orders</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><button id="logoutButton">Logout</button></li>
 
             <?php // if customer
             else: ?>
@@ -37,7 +34,7 @@
             <li><a href="#">Contact</a></li>
             <li><a href="#">Cart</a></li>
             <li><a href="#">My Orders</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><button id="logoutButton">Logout</button></li>
 
             <?php endif; ?>
         </ul>
