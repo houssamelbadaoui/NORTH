@@ -107,6 +107,7 @@ require_once __DIR__ . "/../../../config/admin_auth.php";
     </form>
  </dialog>
     </main>
+    <script src="../../assets/js/manageProducts.js" defer></script>
     <script src="../../assets/js/logout.js" defer></script>
 </body>
 </html>
