@@ -1,5 +1,6 @@
 {
     "require": {
-        "mongodb/mongodb": "^2.5"
+        "mongodb/mongodb": "^2.5",
+        "cloudinary/cloudinary_php": "^3.3"
     }
 }
