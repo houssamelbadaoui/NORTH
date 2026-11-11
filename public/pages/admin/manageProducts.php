@@ -99,7 +99,7 @@ require_once __DIR__ . "/../../../config/admin_auth.php";
                     required
                 ></textarea>
 
-                <button type="submit">Save Product</button>
+                <button type="submit" id="buttonSubmit">Save Product</button>
                 <button type="button" id="cancelAddProductButton">
                     Cancel
                 </button>
