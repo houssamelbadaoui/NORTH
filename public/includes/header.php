@@ -23,7 +23,7 @@
                   // display admin navigation
             elseif($_SESSION["role"] === "admin"):?>
             <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Manage Products</a></li>
+            <li><a href="../pages/admin/manageProducts.php">Manage Products</a></li>
             <li><a href="#">Manage Orders</a></li>
             <li><button id="logoutButton">Logout</button></li>
 
