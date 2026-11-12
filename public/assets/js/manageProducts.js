@@ -22,7 +22,7 @@ addProductForm.addEventListener("submit", async (e) => {
 
   // form input
   const formData = new FormData(addProductForm);
-  const submitButton = addProductForm.getElementById("buttonSubmit");
+  const submitButton = document.getElementById("buttonSubmit");
 
   // disable the button while submitting
   submitButton.disabled = true;
@@ -41,6 +41,8 @@ addProductForm.addEventListener("submit", async (e) => {
       throw new Error(result.message || "Could not create product.");
     }
 
+    await loadProducts(); // add product to the table
+
     alert(result.message);
 
     addProductForm.reset();
@@ -53,3 +55,106 @@ addProductForm.addEventListener("submit", async (e) => {
     submitButton.textContent = "Save Product.";
   }
 });
+
+// function that retrieve data of products from mongodb db
+async function loadProducts() {
+  const tableBody = document.getElementById("productsTableBody"); // select table body
+
+  try {
+    const response = await fetch("/api/products/list.php");
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not retrieve products.");
+    }
+
+    //pass products to display function
+    addProductToTable(result.data.products);
+  } catch (error) {
+    console.error("Product retrieval error:", error);
+
+    tableBody.innerHTML = `
+            <tr>
+                <td colspan="6">Could not load products.</td>
+            </tr>
+        `;
+  }
+}
+
+// helper function to add a product to the table
+function addProductToTable(products) {
+  const tableBody = document.getElementById("productsTableBody");
+
+  // Clear existing rows before rendering
+  tableBody.replaceChildren();
+
+  // Handle an empty product list
+  if (products.length === 0) {
+    const row = document.createElement("tr");
+    const cell = document.createElement("td");
+
+    cell.colSpan = 6;
+    cell.textContent = "No products found.";
+
+    row.appendChild(cell);
+    tableBody.appendChild(row);
+
+    return;
+  }
+
+  // Create a row for every product
+  products.forEach((product) => {
+    const row = document.createElement("tr");
+
+    // Image
+    const imageCell = document.createElement("td");
+    const image = document.createElement("img");
+
+    image.src = product.imageUrl;
+    image.alt = product.name;
+    image.width = 55;
+    image.height = 55;
+    image.classList.add("product-thumbnail");
+
+    imageCell.appendChild(image);
+
+    // Name
+    const nameCell = document.createElement("td");
+    nameCell.textContent = product.name;
+
+    // Category
+    const categoryCell = document.createElement("td");
+    categoryCell.textContent = product.category;
+
+    // Price
+    const priceCell = document.createElement("td");
+
+    priceCell.textContent = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(product.priceCents / 100);
+
+    // Stock
+    const stockCell = document.createElement("td");
+    stockCell.textContent = product.stock;
+
+    // Actions (we will implement these later)
+    const actionsCell = document.createElement("td");
+    actionsCell.textContent = "—";
+
+    // Assemble row
+    row.append(
+      imageCell,
+      nameCell,
+      categoryCell,
+      priceCell,
+      stockCell,
+      actionsCell,
+    );
+
+    tableBody.appendChild(row);
+  });
+}
+
+loadProducts();

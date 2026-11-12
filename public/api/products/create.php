@@ -156,7 +156,11 @@ try{
         "updatedAt" => $now
     ];
 
-    $insertResult = $products->insertOne($product);
+    $insertResult = $products->insertOne($product); // insert product
+
+
+    // send response to js with data of the product
+    sendResponse(201, true, "Product created successfully");
 }catch(Throwable $e){
     error_log("Product creation failed: " . $e->getMessage());
 
@@ -170,4 +174,3 @@ try{
     sendResponse(500, false, "Could not save the product");
 }
 
-sendResponse(201, true, "Product created successfully");

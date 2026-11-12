@@ -106,9 +106,9 @@
   background: var(--color-surface-muted);
 }
 
-/* =================================
+/* 
    ADD PRODUCT MODAL
-================================= */
+ */
 
 .product-dialog {
   width: min(92%, 560px);
@@ -236,6 +236,12 @@
   margin-top: var(--space-2);
 
   border-top: 1px solid var(--color-border);
+}
+.product-thumbnail {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
 }
 
 /* RESPONSIVE */
