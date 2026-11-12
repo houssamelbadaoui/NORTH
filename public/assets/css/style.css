@@ -1,32 +1,122 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.header {
+  width: 100%;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: relative;
+  z-index: 100;
 }
 
-.header {
+.header-container {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container-width));
+
+  min-height: 82px;
+  margin: 0 auto;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  padding: 1rem 2rem;
+  gap: 2rem;
 }
 
-a {
-  color: inherit;
+/* LOGO */
+
+.logo {
+  color: var(--color-text);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -2px;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
-li {
-  list-style: none;
+.logo span {
+  color: var(--color-accent);
+}
+
+/* NAVIGATION */
+
+.main-nav {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links {
   display: flex;
-  gap: 1rem;
+  align-items: center;
+  gap: 2rem;
 }
 
-.logo {
-  font-size: 2.5rem;
-  font-weight: bold;
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  position: relative;
+  color: var(--color-text);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.nav-links a:hover {
+  color: var(--color-accent);
+}
+
+/* REGISTER LINK */
+
+.nav-links .nav-register {
+  background: var(--color-accent);
+  color: #ffffff;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-fast);
+}
+
+.nav-links .nav-register:hover {
+  background: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+/* LOGOUT BUTTON */
+
+.logout-button {
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.logout-button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
+  .header-container {
+    flex-direction: column;
+    justify-content: center;
+    padding-block: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem 1.25rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .nav-links {
+    gap: 0.75rem 1rem;
+  }
 }
