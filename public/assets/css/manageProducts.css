@@ -1,0 +1,278 @@
+/* PAGE LAYOUT */
+
+.manage-products {
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container-width));
+  margin: 0 auto;
+  padding-block: var(--space-8);
+}
+
+/* PAGE HEADER */
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.products-header__text h1 {
+  font-size: var(--font-2xl);
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-2);
+}
+
+.products-header__text p {
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+}
+
+/* BUTTONS */
+
+.button-primary,
+.button-secondary {
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1.2rem;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.button-primary {
+  background: var(--color-accent);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--color-accent-hover);
+}
+
+.button-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.button-secondary:hover {
+  background: var(--color-surface-muted);
+}
+
+/* PRODUCTS TABLE */
+
+.products-section {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.products-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.products-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.products-table th,
+.products-table td {
+  padding: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+  font-size: var(--font-sm);
+}
+
+.products-table th {
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-weight: 600;
+}
+
+.products-table td {
+  color: var(--color-text);
+}
+
+.products-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.products-table tbody tr:hover {
+  background: var(--color-surface-muted);
+}
+
+/* =================================
+   ADD PRODUCT MODAL
+================================= */
+
+.product-dialog {
+  width: min(92%, 560px);
+  max-width: 560px;
+  max-height: 90vh;
+
+  margin: auto;
+  padding: 0;
+
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  background: var(--color-surface);
+  color: var(--color-text);
+
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.15);
+
+  overflow-y: auto;
+}
+
+/* Native dialog backdrop */
+
+.product-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+}
+
+/* MODAL HEADER */
+
+.product-dialog__header {
+  padding: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.product-dialog__header h2 {
+  font-size: var(--font-xl);
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-2);
+}
+
+.product-dialog__header p {
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+}
+
+/* FORM */
+
+.product-dialog form {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.form-group label {
+  font-size: var(--font-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* INPUTS */
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 0.875rem;
+
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--radius-md);
+
+  background: var(--color-surface);
+  color: var(--color-text);
+
+  font-family: var(--font-family);
+  font-size: var(--font-sm);
+
+  outline: none;
+  transition: var(--transition-fast);
+}
+
+.form-group input,
+.form-group select {
+  min-height: 44px;
+}
+
+.form-group textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+/* FILE INPUT */
+
+.form-group input[type="file"] {
+  padding: var(--space-2);
+  background: var(--color-surface-muted);
+}
+
+.form-group small {
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+}
+
+/* MODAL ACTIONS */
+
+.product-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-3);
+
+  padding-top: var(--space-4);
+  margin-top: var(--space-2);
+
+  border-top: 1px solid var(--color-border);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 480px) {
+  .product-dialog {
+    width: calc(100% - 1.5rem);
+    max-height: 92vh;
+  }
+
+  .product-dialog__header,
+  .product-dialog form {
+    padding: var(--space-4);
+  }
+
+  .product-dialog__actions {
+    flex-direction: column-reverse;
+  }
+
+  .product-dialog__actions button {
+    width: 100%;
+  }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 640px) {
+  .manage-products {
+    padding-block: var(--space-6);
+  }
+
+  .products-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .products-header .button-primary {
+    width: 100%;
+  }
+}
