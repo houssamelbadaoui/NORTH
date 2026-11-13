@@ -8,8 +8,11 @@ logoutButton.addEventListener("click", async () => {
 
   // send php a request
   try {
-    const response = await fetch("../api/logout.php", {
+    const response = await fetch("/api/logout.php", {
       method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
     });
 
     // json response
@@ -18,7 +21,7 @@ logoutButton.addEventListener("click", async () => {
     // validate that the logout was succeful
     if (result.success === true) {
       // redirect to homepage
-      window.location.href = "../index.php";
+      window.location.href = "/index.php";
     } else {
       alert(result.message || "Logout failed, Please try again.");
 
