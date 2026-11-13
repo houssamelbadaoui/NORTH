@@ -81,6 +81,7 @@ require_once __DIR__ . "/../../config/session.php";
    
 
     <script src="/assets/js/products.js" defer></script>
+    <script src="/assets/js/cart/add.js"></script>
 
 </body>
 </html>

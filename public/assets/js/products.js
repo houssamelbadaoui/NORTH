@@ -46,8 +46,7 @@ function createProductCard(product) {
   button.type = "button";
   button.classList.add("add-to-cart");
   button.textContent = "Add to cart";
-  button.disabled = true;
-  button.title = "Shopping cart coming soon";
+  button.dataset.productId = product.id;
 
   info.append(name, price, button); // put name and price and button inisde the info container
   card.append(imageWrapper, info); // append image and info inside the card
