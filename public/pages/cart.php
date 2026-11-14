@@ -66,7 +66,7 @@ if(!isset($_SESSION["user_id"]) || ($_SESSION["role"] ?? "") !== "customer"){
         </div>
       </section>
     </main>
-    <script src="/assets/js/cart.js" defer></script>
+    <script src="/assets/js/cart/get.js" defer></script>
     <script src="/assets/js/logout.js"></script>
 </body>
 </html>

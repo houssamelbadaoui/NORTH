@@ -32,7 +32,7 @@
                 <?php else: ?>
 
                     <li><a href="/index.php">Home</a></li>
-                    <li><a href="./pages/products.php">Products</a></li>
+                    <li><a href="/pages/products.php">Products</a></li>
                     <li><a href="#">Contact</a></li>
                     <li><a href="/pages/cart.php" class="cart-link" aria-label="shopping-cart">
                         <svg

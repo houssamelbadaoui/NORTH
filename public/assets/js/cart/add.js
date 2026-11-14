@@ -3,10 +3,37 @@ const cartCounElement = document.getElementById("cartCount"); // cart counter
 
 // helper function to update the cart counter
 function updateCartBadge(count) {
+  if (!cartCounElement) return;
+
   cartCounElement.textContent = count;
   cartCounElement.hidden = count === 0; // counter will be hidden if count = 0
 }
 
+// Get the existing cart count when the page loads.
+async function loadCartCount() {
+  if (!cartCounElement) return;
+
+  try {
+    const response = await fetch("/api/cart/get.php", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      console.error("Cart request failed:", result);
+      return;
+    }
+
+    updateCartBadge(result.data.cartCount);
+  } catch (error) {
+    console.error("Cart count loading error:", error);
+  }
+}
 // send an add to cart request to php
 async function addToCart(productId, button) {
   button.disabled = true; // disbale the button to not get more than one request
@@ -71,3 +98,5 @@ productsGrid1.addEventListener("click", (event) => {
   // call function to add to cart
   addToCart(productId, button);
 });
+
+loadCartCount();
