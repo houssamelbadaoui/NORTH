@@ -27,6 +27,9 @@ function createCartItem(item) {
   const article = document.createElement("article");
   article.classList.add("cart-item");
 
+  // store the product ID on the article.
+  article.dataset.productId = item.productId;
+
   // Product image
   const imageWrapper = document.createElement("div");
   imageWrapper.classList.add("cart-item-image-wrapper");
@@ -55,10 +58,6 @@ function createCartItem(item) {
   name.classList.add("cart-item-name");
   name.textContent = item.name;
 
-  const quantity = document.createElement("p");
-  quantity.classList.add("cart-item-quantity");
-  quantity.textContent = `Quantity: ${item.quantity}`;
-
   info.append(name);
 
   // Check whether the product still exists.
@@ -67,11 +66,45 @@ function createCartItem(item) {
     price.classList.add("cart-item-price");
     price.textContent = `${formatPrice(item.unitPriceCents)} each`;
 
-    info.append(price, quantity);
+    // Quantoty control
+    const quantityControls = document.createElement("div");
+    quantityControls.classList.add("quantity-controls");
+
+    const decreaseButton = document.createElement("button");
+    decreaseButton.type = "button";
+    decreaseButton.classList.add("quantity-button");
+    decreaseButton.dataset.change = "-1";
+    decreaseButton.textContent = "−";
+    decreaseButton.setAttribute(
+      "aria-label",
+      `Decrease quantity of ${item.name}`,
+    );
+
+    const quantity = document.createElement("span");
+    quantity.classList.add("cart-item-quantity");
+    quantity.textContent = item.quantity;
+
+    const increaseButton = document.createElement("button");
+    increaseButton.type = "button";
+    increaseButton.classList.add("quantity-button");
+    increaseButton.dataset.change = "1";
+    increaseButton.textContent = "+";
+    increaseButton.setAttribute(
+      "aria-label",
+      `Increase quantity of ${item.name}`,
+    );
+
+    quantityControls.append(decreaseButton, quantity, increaseButton);
+
+    info.append(price, quantityControls);
   } else {
     const unavailable = document.createElement("p");
     unavailable.classList.add("cart-item-price");
     unavailable.textContent = "This product is no longer available.";
+
+    const quantity = document.createElement("p");
+    quantity.classList.add("cart-item-quantity");
+    quantity.textContent = `Quantity: ${item.quantity}`;
 
     info.append(unavailable, quantity);
   }
@@ -211,6 +244,77 @@ async function loadCart() {
     );
   }
 }
+
+// Update a product quantity through the API
+async function updateCartQuantity(productId, change, article) {
+  const buttons = article.querySelectorAll(".quantity-button");
+
+  // prevent multiple requests for the same time
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+
+  // send request to php
+  try {
+    const response = await fetch("/api/cart/update.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        productId: productId,
+        change: change,
+      }),
+    });
+
+    const result = await response.json();
+
+    // Handle an expired session.
+    if (response.status === 401 || result.code === "AUTH_REQUIRED") {
+      window.location.href = "/pages/login.php";
+      return;
+    }
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not update product quantity.");
+    }
+
+    // Reload the cart to display the latest server data.
+    await loadCart();
+  } catch (error) {
+    console.error("Cart quantity update error:", error);
+    alert(error.message || "Something went wrong. Please try again.");
+  } finally {
+    buttons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
+}
+
+// Event delegation for quantity buttons.
+cartItemsContainer.addEventListener("click", (event) => {
+  const button = event.target.closest(".quantity-button");
+
+  if (!button || !cartItemsContainer.contains(button)) {
+    return;
+  }
+
+  const article = button.closest(".cart-item");
+
+  if (!article) return;
+
+  const productId = article.dataset.productId;
+  const change = Number(button.dataset.change);
+
+  if (!productId || ![1, -1].includes(change)) {
+    console.error("Invalid product ID or quantity change.");
+    return;
+  }
+
+  updateCartQuantity(productId, change, article);
+});
 
 // Load the cart when the page opens.
 loadCart();
