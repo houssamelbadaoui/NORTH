@@ -1,7 +1,3 @@
-/* =========================
-   MY ORDERS PAGE
-========================= */
-
 .orders-page {
   width: min(var(--container-width), 92%);
   margin: 0 auto;
@@ -196,6 +192,21 @@
 .order-total-price {
   font-size: var(--font-lg);
   font-weight: 700;
+}
+
+.order-status--pending {
+  background-color: #fff0e6;
+  color: #e87524;
+}
+
+.order-status--confirmed {
+  background-color: #e8f5ec;
+  color: #27834a;
+}
+
+.order-status--cancelled {
+  background-color: #fdeaea;
+  color: #c0392b;
 }
 
 /* Responsive design */
