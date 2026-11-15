@@ -22,7 +22,7 @@
 
                     <li><a href="#">Dashboard</a></li>
                     <li><a href="/pages/admin/manageProducts.php">Manage Products</a></li>
-                    <li><a href="#">Manage Orders</a></li>
+                    <li><a href="/pages/admin/manage-orders.php">Manage Orders</a></li>
                     <li>
                         <button type="button" id="logoutButton" class="logout-button">
                             Logout

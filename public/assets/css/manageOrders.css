@@ -1,0 +1,154 @@
+.manage-orders {
+  width: min(100% - 2 * var(--page-gutter), var(--container-width));
+  margin: 0 auto;
+  padding: var(--space-8) 0;
+}
+
+/* Page header */
+
+.orders-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.orders-header__text h1 {
+  font-size: var(--font-3xl);
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-2);
+}
+
+.orders-header__text p {
+  color: var(--color-text-muted);
+  font-size: var(--font-base);
+}
+
+.pending-orders-count {
+  background-color: #fff0e6;
+  color: #e87524;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Table */
+
+.orders-section {
+  width: 100%;
+}
+
+.orders-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.orders-table th,
+.orders-table td {
+  padding: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+  vertical-align: middle;
+}
+
+.orders-table th {
+  background-color: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.orders-table td {
+  font-size: var(--font-sm);
+}
+
+.orders-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Order ID */
+
+.order-id {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Products inside an order */
+
+.order-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 180px;
+}
+
+.order-product-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.order-product-name {
+  font-weight: 500;
+}
+
+.order-product-quantity {
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* Date and total */
+
+.order-date {
+  white-space: nowrap;
+  color: var(--color-text-muted);
+}
+
+.order-total {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Actions placeholder */
+
+.order-actions {
+  color: var(--color-text-muted);
+}
+
+/* Loading, empty and error messages */
+
+.orders-table-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-7) var(--space-4) !important;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .orders-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .orders-header__text h1 {
+    font-size: var(--font-2xl);
+  }
+
+  .orders-table {
+    min-width: 650px;
+  }
+}
