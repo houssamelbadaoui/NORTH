@@ -84,10 +84,29 @@ function createOrderRow(order) {
   totalCell.className = "order-total";
   totalCell.textContent = formatPrice(order.totalCents);
 
-  // Actions placeholder
+  // Actions
   const actionsCell = document.createElement("td");
   actionsCell.className = "order-actions";
-  actionsCell.textContent = "—";
+
+  const actionsContainer = document.createElement("div");
+  actionsContainer.className = "order-action-buttons";
+
+  const confirmButton = document.createElement("button");
+  confirmButton.type = "button";
+  confirmButton.className = "order-action-button order-action-button--confirm";
+  confirmButton.textContent = "Confirm";
+  confirmButton.dataset.orderId = order.id;
+  confirmButton.dataset.action = "confirmed";
+
+  const cancelButton = document.createElement("button");
+  cancelButton.type = "button";
+  cancelButton.className = "order-action-button order-action-button--cancel";
+  cancelButton.textContent = "Cancel";
+  cancelButton.dataset.orderId = order.id;
+  cancelButton.dataset.action = "cancelled";
+
+  actionsContainer.append(confirmButton, cancelButton);
+  actionsCell.appendChild(actionsContainer);
 
   // Assemble row
   row.append(idCell, dateCell, productsCell, totalCell, actionsCell);
@@ -138,5 +157,73 @@ async function loadPendingOrders() {
     displayTableMessage("Could not load pending orders.");
   }
 }
+
+// Handle order confirmation and cancellation
+ordersTableBody.addEventListener("click", async (event) => {
+  const button = event.target.closest(".order-action-button");
+
+  if (!button) {
+    return;
+  }
+
+  const orderId = button.dataset.orderId;
+  const newStatus = button.dataset.action;
+
+  // Ask for confirmation before cancelling
+  if (newStatus === "cancelled") {
+    const confirmed = window.confirm(
+      "Are you sure you want to cancel this order? Its reserved stock will be restored.",
+    );
+
+    if (!confirmed) {
+      return;
+    }
+  }
+
+  const row = button.closest("tr");
+  const rowButtons = row.querySelectorAll(".order-action-button");
+
+  // Prevent multiple clicks while the request is running
+  rowButtons.forEach((rowButton) => {
+    rowButton.disabled = true;
+  });
+
+  button.textContent = "Updating...";
+
+  try {
+    const response = await fetch("/api/order/update-status.php", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        orderId: orderId,
+        status: newStatus,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not update order.");
+    }
+
+    // The order is no longer pending, so refresh the table
+    await loadPendingOrders();
+  } catch (error) {
+    console.error("Order update error:", error);
+
+    alert(error.message || "Something went wrong.");
+
+    // Restore the buttons if the request failed
+    rowButtons.forEach((rowButton) => {
+      rowButton.disabled = false;
+    });
+
+    button.textContent = newStatus === "confirmed" ? "Confirm" : "Cancel";
+  }
+});
 
 loadPendingOrders();

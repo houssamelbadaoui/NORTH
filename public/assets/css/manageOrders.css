@@ -136,6 +136,48 @@
   padding: var(--space-7) var(--space-4) !important;
 }
 
+/* Order action buttons */
+
+.order-action-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.order-action-button {
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+
+.order-action-button--confirm {
+  background-color: #e8f5ec;
+  color: #27834a;
+}
+
+.order-action-button--confirm:hover {
+  background-color: #d4edda;
+}
+
+.order-action-button--cancel {
+  background-color: #fdeaea;
+  color: #c0392b;
+}
+
+.order-action-button--cancel:hover {
+  background-color: #f8d7da;
+}
+
+.order-action-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Responsive */
 
 @media (max-width: 700px) {
