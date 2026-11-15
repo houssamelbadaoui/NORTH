@@ -109,6 +109,16 @@ function createCartItem(item) {
     info.append(unavailable, quantity);
   }
 
+  // Remove product button
+  const removeButton = document.createElement("button");
+
+  removeButton.type = "button";
+  removeButton.classList.add("remove-cart-item");
+  removeButton.textContent = "Remove";
+  removeButton.setAttribute("aria-label", `Remove ${item.name} from cart`);
+
+  info.appendChild(removeButton);
+
   // Product subtotal
   const subtotal = document.createElement("p");
   subtotal.classList.add("cart-item-subtotal");
@@ -315,6 +325,74 @@ cartItemsContainer.addEventListener("click", (event) => {
 
   updateCartQuantity(productId, change, article);
 });
+
+// Event delegation for the Remove button.
+cartItemsContainer.addEventListener("click", (event) => {
+  const button = event.target.closest(".remove-cart-item");
+
+  if (!button || !cartItemsContainer.contains(button)) {
+    return;
+  }
+
+  const article = button.closest(".cart-item");
+
+  if (!article) return;
+
+  const productId = article.dataset.productId;
+
+  if (!productId) {
+    console.error("Product ID is missing.");
+    return;
+  }
+
+  removeCartItem(productId, article);
+});
+// function that connect to remove.php api endpoint to remove a product from cart
+async function removeCartItem(productId, article) {
+  const buttons = article.querySelectorAll("button");
+
+  // disbale all button to not get many requests
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+
+  // connect to api endpoint
+  try {
+    const response = await fetch("/api/cart/remove.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        productId: productId,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.status === 401 || result.code === "AUTH_REQUIRED") {
+      window.location.href = "/pages/login.php";
+      return;
+    }
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not remove product.");
+    }
+
+    // Reload the cart with the latest server data.
+    await loadCart();
+  } catch (error) {
+    console.error("Remove cart item error:", error);
+
+    alert(error.message || "Something went wrong. Please try again.");
+  } finally {
+    buttons.forEach((button) => {
+      button.disabled = false;
+    });
+  }
+}
 
 // Load the cart when the page opens.
 loadCart();

@@ -275,6 +275,27 @@
   text-align: center;
 }
 
+.remove-cart-item {
+  display: block;
+  margin-top: 10px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #777;
+  font-size: 0.85rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.remove-cart-item:hover:not(:disabled) {
+  color: #b42318;
+}
+
+.remove-cart-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 850px) {
