@@ -17,8 +17,31 @@ require_once __DIR__ . "/../config/session.php";
     
 <?php require_once __DIR__ . "/includes/header.php"; ?>
 
-<main>
-    <h1>Welcome to NORTH</h1>
+<main class="home-page">
+
+    <section class="hero">
+
+        <div class="hero__image"></div>
+
+        <div class="hero__overlay"></div>
+
+        <div class="hero__content">
+            <p class="hero__eyebrow">NORTH — NEW COLLECTION</p>
+
+            <h1>Find Your<br>Own Direction.</h1>
+
+            <p class="hero__description">
+                Timeless essentials. Modern expression.
+                Discover the NORTH collection.
+            </p>
+
+            <a href="/pages/products.php" class="hero__button">
+                Shop Now
+            </a>
+        </div>
+
+    </section>
+
 </main>
 <script src="assets/js/logout.js"></script>
 </body>
