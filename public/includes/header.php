@@ -55,7 +55,7 @@
 
                         <span id="cartCount" class="cart-count" hidden>0</span>
                     </a></li>
-                    <li><a href="#">My Orders</a></li>
+                    <li><a href="/pages/my-orders.php">My Orders</a></li>
                     <li>
                         <button type="button" id="logoutButton" class="logout-button">
                             Logout
