@@ -197,9 +197,11 @@ function renderCart(cart) {
   cartSubtotal.textContent = formatPrice(cart.totalCents);
   cartTotal.textContent = formatPrice(cart.totalCents);
 
-  // Checkout is not implemented yet.
+  // Enable ordering only if every product is available
   if (checkoutButton) {
-    checkoutButton.disabled = true;
+    const hasUnavailableProducts = items.some((item) => !item.productAvailable);
+
+    checkoutButton.disabled = hasUnavailableProducts;
   }
 }
 
@@ -394,5 +396,58 @@ async function removeCartItem(productId, article) {
   }
 }
 
+// function to send the order request to the API
+async function placeOrder() {
+  if (!checkoutButton || checkoutButton.disabled) return;
+
+  let orderSucceeded = false;
+
+  checkoutButton.disabled = true;
+  checkoutButton.textContent = "Placing order...";
+
+  try {
+    const response = await fetch("/api/order/add.php", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      credentials: "same-origin",
+    });
+
+    const result = await response.json();
+
+    // Handle an expired session.
+    if (response.status === 401 || result.code === "AUTH_REQUIRED") {
+      window.location.href = "/pages/login.php";
+      return;
+    }
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not place your order.");
+    }
+
+    orderSucceeded = true;
+
+    // The API has created the order and emptied the cart.
+    await loadCart();
+
+    alert(result.message || "Your order has been placed successfully.");
+  } catch (error) {
+    console.error("Place order error:", error);
+    alert(error.message || "Something went wrong. Please try again.");
+  } finally {
+    checkoutButton.textContent = "Order";
+
+    // If the request failed, allow the customer to try again.
+    if (!orderSucceeded) {
+      checkoutButton.disabled = false;
+    }
+  }
+}
+
+// handle the order button
+if (checkoutButton) {
+  checkoutButton.addEventListener("click", placeOrder);
+}
 // Load the cart when the page opens.
 loadCart();
