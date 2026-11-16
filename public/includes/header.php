@@ -21,7 +21,7 @@
 
                 <?php elseif ($_SESSION["role"] === "admin"): ?>
 
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="/pages/admin/manage-users.php">Manage Users</a></li>
                     <li><a href="/pages/admin/manageProducts.php">Manage Products</a></li>
                     <li><a href="/pages/admin/manage-orders.php">Manage Orders</a></li>
 

@@ -1,0 +1,149 @@
+.manage-users {
+  width: min(100% - 2 * var(--page-gutter), var(--container-width));
+  margin: 0 auto;
+  padding: var(--space-8) 0;
+}
+
+/* Page header */
+
+.users-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.users-header__text h1 {
+  font-size: var(--font-3xl);
+  line-height: var(--line-height-heading);
+  margin-bottom: var(--space-2);
+}
+
+.users-header__text p {
+  color: var(--color-text-muted);
+  font-size: var(--font-base);
+}
+
+.users-count {
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Table */
+
+.users-section {
+  width: 100%;
+}
+
+.users-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.users-table th,
+.users-table td {
+  padding: var(--space-4);
+  border-bottom: var(--border-width) solid var(--color-border);
+  vertical-align: middle;
+}
+
+.users-table th {
+  background-color: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.users-table td {
+  font-size: var(--font-sm);
+}
+
+.users-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* User information */
+
+.user-name {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.user-email {
+  color: var(--color-text-muted);
+}
+
+.user-order-count {
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Role labels */
+
+.user-role {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-xs);
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.user-role--customer {
+  background-color: #eef2ff;
+  color: #4b5ca8;
+}
+
+.user-role--admin {
+  background-color: #e8f5ec;
+  color: #27834a;
+}
+
+/* Actions placeholder */
+
+.user-actions {
+  color: var(--color-text-muted);
+}
+
+/* Loading, empty and error messages */
+
+.users-table-message {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: var(--space-7) var(--space-4) !important;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .users-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .users-header__text h1 {
+    font-size: var(--font-2xl);
+  }
+
+  .users-table {
+    min-width: 650px;
+  }
+}
