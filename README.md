@@ -1,4 +1,4 @@
-# NORTH — Online Store
+# NORTH: Online Store
 
 ## About the Project
 
