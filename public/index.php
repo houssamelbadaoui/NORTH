@@ -26,7 +26,7 @@ require_once __DIR__ . "/../config/session.php";
         <div class="hero__overlay"></div>
 
         <div class="hero__content">
-            <p class="hero__eyebrow">NORTH — NEW COLLECTION</p>
+            <p class="hero__eyebrow">NORTH: NEW COLLECTION</p>
 
             <h1>Find Your<br>Own Direction.</h1>
 
