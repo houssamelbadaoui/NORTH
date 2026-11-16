@@ -152,6 +152,59 @@ require_once __DIR__ . "/../../../config/admin_auth.php";
             </form>
 
         </dialog>
+
+
+<!-- Update stock modal -->
+<dialog id="updateStockDialog" class="product-dialog">
+
+    <div class="product-dialog__header">
+        <h2>Update Stock</h2>
+        <p id="updateStockProductName">Update product inventory.</p>
+    </div>
+
+    <form id="updateStockForm">
+
+        <!-- Stores the ID of the product being updated -->
+        <input
+            type="hidden"
+            id="updateStockProductId"
+            name="productId"
+        >
+
+        <div class="form-group">
+            <label for="updateStockInput">New stock quantity</label>
+            <input
+                type="number"
+                id="updateStockInput"
+                name="stock"
+                min="0"
+                step="1"
+                required
+            >
+        </div>
+
+        <div class="product-dialog__actions">
+            <button
+                type="button"
+                id="cancelUpdateStockButton"
+                class="button-secondary"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="submit"
+                id="updateStockSubmitButton"
+                class="button-primary"
+            >
+                Update Stock
+            </button>
+        </div>
+
+    </form>
+
+</dialog>
+
     </main>
     <script src="../../assets/js/manageProducts.js" defer></script>
     <script src="../../assets/js/logout.js" defer></script>
