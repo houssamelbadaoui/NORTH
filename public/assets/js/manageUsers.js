@@ -76,10 +76,18 @@ function renderUsers(users) {
 
     roleCell.appendChild(roleLabel);
 
-    // Actions (role update will be added later)
+    // Actions: Update button
     const actionsCell = document.createElement("td");
-    actionsCell.classList.add("user-actions");
-    actionsCell.textContent = "—";
+
+    const updateRoleButton = document.createElement("button");
+    updateRoleButton.type = "button";
+    updateRoleButton.classList.add("user-role-button");
+
+    updateRoleButton.textContent =
+      user.role === "customer" ? "Make Admin" : "Make Customer";
+    updateRoleButton.dataset.userId = user.id;
+
+    actionsCell.appendChild(updateRoleButton);
 
     // Add cells to row
     row.appendChild(nameCell);
@@ -92,5 +100,42 @@ function renderUsers(users) {
   });
 }
 
+// Handle role update buttons
+usersTableBody.addEventListener("click", async (e) => {
+  const button = e.target.closest(".user-role-button");
+
+  if (!button) return;
+
+  const userId = button.dataset.userId;
+
+  button.disabled = true;
+  button.textContent = "Updating...";
+
+  try {
+    const response = await fetch("/api/users/update-role.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "same-origin",
+      body: JSON.stringify({
+        userId: userId,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Could not update user role.");
+    }
+
+    await loadUsers();
+  } catch (error) {
+    console.error("Role update error:", error);
+    alert(error.message || "Something went wrong.");
+    button.disabled = false;
+    button.textContent = "Update Role";
+  }
+});
 // Load users when the page opens
 loadUsers();
