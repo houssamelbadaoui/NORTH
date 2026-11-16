@@ -11,7 +11,7 @@
 
                     <li><a href="/index.php">Home</a></li>
                     <li><a href="/pages/products.php">Products</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="/pages/contact.php">Contact</a></li>
                     <li><a href="/pages/login.php">Login</a></li>
                     <li>
                         <a href="/pages/register.php" class="nav-register">
